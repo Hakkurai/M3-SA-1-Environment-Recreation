@@ -20,11 +20,11 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(ambientLight);
 
 // Point Lights
-const pointLight1 = new THREE.PointLight(0xffffff, 1);
+const pointLight1 = new THREE.PointLight(0xffffff, 0.5);
 pointLight1.position.set(-3, 2, -2.5);
 scene.add(pointLight1);
 
-const pointLight2 = new THREE.PointLight(0xffffff, 1);
+const pointLight2 = new THREE.PointLight(0xffffff, 0.5);
 pointLight2.position.set(3, 2, -2.5);
 scene.add(pointLight2);
 
@@ -163,7 +163,7 @@ WW1plane.position.x = 7.49;
 WW1plane.position.y = -1.5;
 WW1plane.rotation.y = Math.PI / 2;
 
-// WHITE Wall Design 2 - Left
+// White Wall Design 2 - Left
 const WW2geometry = new THREE.PlaneGeometry(15, 1);
 const WW2texture = textureLoader.load('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2IwZ7ohzt1kvqgAVLuWO-k3LAevEt-O8O5DOVs94suZ85A17S');
 const WW2material = new THREE.MeshBasicMaterial({ map: WW2texture, side: THREE.DoubleSide });
@@ -199,7 +199,7 @@ WW5plane.position.z = 4.5;
 WW5plane.position.y = -1.5;
 WW5plane.rotation.y = Math.PI / 2;
 
-// White Wall Design 5 - Kitchen Side 
+// White Wall Design 6 - Kitchen Side 
 const WW6geometry = new THREE.PlaneGeometry(7, 1);
 const WW6texture = textureLoader.load('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2IwZ7ohzt1kvqgAVLuWO-k3LAevEt-O8O5DOVs94suZ85A17S');
 const WW6material = new THREE.MeshBasicMaterial({ map: WW6texture, side: THREE.DoubleSide });
@@ -208,11 +208,145 @@ WW6plane.position.z = 1.49;
 WW6plane.position.y = -1.5;
 WW6plane.position.x = 4;
 
+// White Wall Design 7 - Living Room Side 
+const WW7geometry = new THREE.PlaneGeometry(6, 1);
+const WW7texture = textureLoader.load('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2IwZ7ohzt1kvqgAVLuWO-k3LAevEt-O8O5DOVs94suZ85A17S');
+const WW7material = new THREE.MeshBasicMaterial({ map: WW7texture, side: THREE.DoubleSide });
+const WW7plane = new THREE.Mesh(WW7geometry, WW7material);
+WW7plane.position.z = 1.49;
+WW7plane.position.y = -1.5;
+WW7plane.position.x = -4.5;
 
+// White Wall Design 8 - Kitchen Back-Side
+const WW8geometry = new THREE.PlaneGeometry(7, 1);
+const WW8texture = textureLoader.load('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2IwZ7ohzt1kvqgAVLuWO-k3LAevEt-O8O5DOVs94suZ85A17S');
+const WW8material = new THREE.MeshBasicMaterial({ map: WW8texture, side: THREE.DoubleSide });
+const WW8plane = new THREE.Mesh(WW8geometry, WW8material);
+WW8plane.position.z = 1.51;
+WW8plane.position.y = -1.5;
+WW8plane.position.x = 4;
+
+// L - Shape Counter Top 
+const LSgeometry = new THREE.BoxGeometry(0.9, 1.5, 3.2);
+const LStexture = textureLoader.load('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRM_XAUScwsDWJ7iW6h3pEMvh7g4s9dibx8FH3WVrSQBX4XF0qJ');
+const LSmaterial = new THREE.MeshBasicMaterial({ map: LStexture, side: THREE.DoubleSide });
+const LScube = new THREE.Mesh(LSgeometry, LSmaterial);
+LScube.position.x = 6.9;
+LScube.position.y = -1.2;
+LScube.position.z = -1.9;
+
+// L - Shape Counter Top 1
+const LS1geometry = new THREE.BoxGeometry(2.75, 1.5, 1);
+const LS1texture = textureLoader.load('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRM_XAUScwsDWJ7iW6h3pEMvh7g4s9dibx8FH3WVrSQBX4XF0qJ');
+const LS1material = new THREE.MeshBasicMaterial({ map: LS1texture, side: THREE.DoubleSide });
+const LS1cube = new THREE.Mesh(LS1geometry, LS1material);
+LS1cube.position.x = 5.1;
+LS1cube.position.y = -1.2;
+LS1cube.position.z = -3;
+
+// Couch 
+const Cgeometry = new THREE.BoxGeometry(0.2, 1.5, 3.2);
+const Ctexture = textureLoader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuFMvvbzjtQbhintBybEBl_8fRMqjNeA9pZNuL_Dv3zq0qUsiY');
+const Cmaterial = new THREE.MeshBasicMaterial({ map: Ctexture, side: THREE.DoubleSide });
+const Ccube = new THREE.Mesh(Cgeometry, Cmaterial);
+Ccube.position.x = -1.9;
+Ccube.position.y = -1.2;
+Ccube.position.z = -5.8;
+
+// Couch Seat
+const CSgeometry = new THREE.BoxGeometry(1, 0.5, 3.2);
+const CStexture = textureLoader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuFMvvbzjtQbhintBybEBl_8fRMqjNeA9pZNuL_Dv3zq0qUsiY');
+const CSmaterial = new THREE.MeshBasicMaterial({ map: CStexture, side: THREE.DoubleSide });
+const CScube = new THREE.Mesh(CSgeometry, CSmaterial);
+CScube.position.x = -2.5;
+CScube.position.y = -1.7;
+CScube.position.z = -5.8;
+
+// Bed Foam
+const BFgeometry = new THREE.BoxGeometry(2.5, 0.5, 3.2); 
+const BFtexture = textureLoader.load('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSr15abpEg5mDDcSQVzXxZxjMGba4ATtQ0_fr0av0NtkEKG_Mhs');
+const BFmaterial = new THREE.MeshBasicMaterial({ map: BFtexture, side: THREE.DoubleSide });
+const BFcube = new THREE.Mesh(BFgeometry, BFmaterial);
+BFcube.position.x = -5.9;
+BFcube.position.y = -1.7;
+BFcube.position.z = 5.8;
+
+// Bed Blanket 
+const BBgeometry = new THREE.BoxGeometry(2.5, 0.1, 2.2);
+const BBtexture = textureLoader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiVgP6Fn7TTG_kwg_51yTye0EVrY8LKcsnM-spuHO3A6FSu2Y5');
+const BBmaterial = new THREE.MeshBasicMaterial({ map: BBtexture, side: THREE.DoubleSide });
+const BBcube = new THREE.Mesh(BBgeometry, BBmaterial);
+BBcube.position.x = -5.9;
+BBcube.position.y = -1.4;
+BBcube.position.z = 5.3;
+
+// TV Table 
+const TVTgeometry = new THREE.BoxGeometry(1, 0.5, 2.2);
+const TVTtexture = textureLoader.load('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQxHXgjrken5QkXt8nv7XMNVr0siHo-8KX3INJClCwPXvCyZwje');
+const TVTmaterial = new THREE.MeshBasicMaterial({ map: TVTtexture, side: THREE.DoubleSide });
+const TVTcube = new THREE.Mesh(TVTgeometry, TVTmaterial);
+TVTcube.position.x = -6.9;
+TVTcube.position.y = -1.7;
+TVTcube.position.z = -5.8;
+
+// Television 
+const TVgeometry = new THREE.BoxGeometry(0.1, 1.5, 3.2);
+const TVtexture = textureLoader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJOFBenHUEJthIs597dZWvuwz5ftMqIBGKlfDQmPvZN52OFUce');
+const TVmaterial = new THREE.MeshBasicMaterial({ map: TVtexture, side: THREE.DoubleSide });
+const TVcube = new THREE.Mesh(TVgeometry, TVmaterial);
+TVcube.position.x = -6.9;
+TVcube.position.y = -0.65;
+TVcube.position.z = -5.8;
+
+// Kitchen Cabinet 
+const KCgeometry = new THREE.BoxGeometry(0.9, 2.5, 1.5);
+const KCtexture = textureLoader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyLnc0FIlyfidopVshyXiU6Q3Frh6WprSHbUZdurfBsbSegdbX');
+const KCmaterial = new THREE.MeshToonMaterial({ map: KCtexture, side: THREE.DoubleSide });
+const KCcube = new THREE.Mesh(KCgeometry, KCmaterial);
+KCcube.position.x = 7;
+KCcube.position.y = -0.75;
+KCcube.position.z = -6.5;
+
+// Kitchen Cabinet Handle 
+const KCHgeometry = new THREE.BoxGeometry(0.13, 0.2, 0.13);
+const KCHtexture = textureLoader.load('data:image/jpeg;base64,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');
+const KCHmaterial = new THREE.MeshBasicMaterial({ map: KCHtexture, side: THREE.DoubleSide });
+const KCHcube = new THREE.Mesh(KCHgeometry, KCHmaterial);
+KCHcube.position.x = 6.4;
+KCHcube.position.y = -0.75;
+KCHcube.position.z = -6.9;
+
+// Kitchen Cabinet Handle 1
+const KCH1geometry = new THREE.BoxGeometry(0.13, 0.2, 0.13);
+const KCH1texture = textureLoader.load('data:image/jpeg;base64,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');
+const KCH1material = new THREE.MeshBasicMaterial({ map: KCH1texture, side: THREE.DoubleSide });
+const KCH1cube = new THREE.Mesh(KCH1geometry, KCH1material);
+KCH1cube.position.x = 6.4;
+KCH1cube.position.y = -0.75;
+KCH1cube.position.z = -6;
+
+// Front Door 
+const FDgeometry = new THREE.PlaneGeometry(2, 3.5);
+const FDtexture = textureLoader.load('https://cdn.discordapp.com/attachments/1201639742006104165/1219058922011496468/image.png?ex=6609ec18&is=65f77718&hm=3eaaa34274de22c7ccf8379d560b785ec5f858c112a80eedc3fe1216c6c92b57&');
+const FDmaterial = new THREE.MeshBasicMaterial({ map: FDtexture, side: THREE.DoubleSide });
+const FDplane = new THREE.Mesh(FDgeometry, FDmaterial);
+FDplane.position.x = 1;
+FDplane.position.z = -7.4;
+FDplane.position.y = -0.25;
+
+// Window 
+const Wgeometry = new THREE.PlaneGeometry(2, 2.5);
+const Wtexture = textureLoader.load('https://cdn.discordapp.com/attachments/1201639742006104165/1219058229473054720/image.png?ex=6609eb72&is=65f77672&hm=3e892d46fdf0ef2f4bcb58d18f0ec756edbf39192805c9cb6584674c240156f1&');
+const Wmaterial = new THREE.MeshBasicMaterial({ map: Wtexture, side: THREE.DoubleSide });
+const Wplane = new THREE.Mesh(Wgeometry, Wmaterial);
+Wplane.position.x = -7.4;
+Wplane.position.z = 0;
+Wplane.rotation.y = -Math.PI / 2;
 
 scene.add(plane, Frplane, Rplane, Lplane, roof, KFcube, RFcube, RHcube, RWplane, RW1plane, 
           RW2plane, Bplane, RH1cube, WWplane, WW1plane, WW2plane, WW3plane, WW4plane, 
-          WW5plane, WW6plane);
+          WW5plane, WW6plane, WW7plane, WW8plane, LScube, LS1cube, Ccube, CScube, BBcube, 
+          BFcube, TVTcube, TVcube, KCcube, KCHcube, KCH1cube, FDplane, Wplane);
 
 // Mouse Control
 let isRightMouseDown = false;
