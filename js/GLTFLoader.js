@@ -2145,4 +2145,5 @@ const WEBGL_CONSTANTS = {
 
 const WEBGL_COMPONENT_TYPES = {
 	5120: Int8Array,
-	5121: Uint8Array,... (64 KB left);
+	5121: Uint8Array,... (64 KB left)
+};
