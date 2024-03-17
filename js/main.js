@@ -1,98 +1,35 @@
-import * as THREE from './js/three.js';
-import { OrbitControls } from './js/OrbitControls.js';
-import { GLTFLoader } from './js/GLTFLoader.js';
+import * as THREE from './three.js';
+import { OrbitControls } from './OrbitControls.js';
+import { GLTFLoader } from './GLTFLoader.js';
 
-// Mouse Control
-let isRightMouseDown = false;
-let prevMouseX = 0;
-let prevMouseY = 0;
-
-function onMouseDown(event) {
-    if (event.button === 2) { // Right mouse button
-        isRightMouseDown = true;
-        prevMouseX = event.clientX;
-        prevMouseY = event.clientY;
-    }
-}
-
-function onMouseUp(event) {
-    if (event.button === 2) { // Right mouse button
-        isRightMouseDown = false;
-    }
-}
-
-function onMouseMove(event) {
-    if (isRightMouseDown) {
-        const deltaX = event.clientX - prevMouseX;
-        const deltaY = event.clientY - prevMouseY;
-
-        const sensitivity = 0.001;
-        camera.rotation.y -= deltaX * sensitivity;
-        camera.rotation.x -= deltaY * sensitivity;
-
-        prevMouseX = event.clientX;
-        prevMouseY = event.clientY;
-    }
-}
-
-document.addEventListener('mousedown', onMouseDown);
-document.addEventListener('mouseup', onMouseUp);
-document.addEventListener('mousemove', onMouseMove);
-
-// WASD Movement
-const keyboard = {};
-document.addEventListener('keydown', (event) => {
-    keyboard[event.key] = true;
-});
-document.addEventListener('keyup', (event) => {
-    keyboard[event.key] = false;
-});
-
-const moveSpeed = 0.1;
-const flySpeed = 0.1;
-
-function updateCameraPosition() {
-    const moveVector = new THREE.Vector3(); // Vector to store movement direction
-
-    if (keyboard['w']) {
-        moveVector.z -= moveSpeed; // Move camera forward
-    }
-    if (keyboard['s']) {
-        moveVector.z += moveSpeed; // Move camera backward
-    }
-    if (keyboard['a']) {
-        moveVector.x -= moveSpeed; // Move camera left
-    }
-    if (keyboard['d']) {
-        moveVector.x += moveSpeed; // Move camera right
-    }
-    if (keyboard[' ']) { // Spacebar
-        camera.position.y += flySpeed; // Move camera upwards
-    }
-
-    // Apply movement vector to the camera's position
-    camera.position.add(moveVector);
-}
-
-// Render Loop
-function animate() {
-    requestAnimationFrame(animate);
-
-    updateCameraPosition();
-    renderer.render(scene, camera);
-}
-
-const controls = new OrbitControls(camera, renderer.domElement);
-const loader = new GLTFLoader();
-
+// Scene
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
+// Camera
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 50, 70); // Adjusted camera position
+camera.lookAt(0, 0, 0);
 
+// Renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+
+// Ambient Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambientLight);
+
+// Point Lights
+const pointLight1 = new THREE.PointLight(0xffffff, 1);
+pointLight1.position.set(0, 2, -2.5);
+scene.add(pointLight1);
+
+const pointLight2 = new THREE.PointLight(0xffffff, 1);
+pointLight2.position.set(0, 2, 4);
+scene.add(pointLight2);
+
 camera.position.z = 4;
+const cameraControl = new OrbitControls(camera, renderer.domElement);
 
 // Floor
 const textureLoader = new THREE.TextureLoader();
@@ -184,16 +121,84 @@ DKcube.position.z = -1.8;
 
 scene.add(plane, Frplane, Rplane, Lplane, roof, S1cube, S2cube, S3cube, DRcube, DKcube);
 
-// Ambient Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambientLight);
+// Mouse Control
+let isRightMouseDown = false;
+let prevMouseX = 0;
+let prevMouseY = 0;
 
-// Point Lights
-const pointLight1 = new THREE.PointLight(0xffffff, 1);
-pointLight1.position.set(0, 2, -2.5);
-scene.add(pointLight1);
+function onMouseDown(event) {
+    if (event.button === 2) { // Right mouse button
+        isRightMouseDown = true;
+        prevMouseX = event.clientX;
+        prevMouseY = event.clientY;
+    }
+}
 
-const pointLight2 = new THREE.PointLight(0xffffff, 1);
-pointLight2.position.set(0, 2, 4);
-scene.add(pointLight2);
+function onMouseUp(event) {
+    if (event.button === 2) { // Right mouse button
+        isRightMouseDown = false;
+    }
+}
 
+function onMouseMove(event) {
+    if (isRightMouseDown) {
+        const deltaX = event.clientX - prevMouseX;
+        const deltaY = event.clientY - prevMouseY;
+
+        const sensitivity = 0.001;
+        camera.rotation.y -= deltaX * sensitivity;
+        camera.rotation.x -= deltaY * sensitivity;
+
+        prevMouseX = event.clientX;
+        prevMouseY = event.clientY;
+    }
+}
+
+document.addEventListener('mousedown', onMouseDown);
+document.addEventListener('mouseup', onMouseUp);
+document.addEventListener('mousemove', onMouseMove);
+
+// WASD Movement
+const keyboard = {};
+document.addEventListener('keydown', (event) => {
+    keyboard[event.key] = true;
+});
+document.addEventListener('keyup', (event) => {
+    keyboard[event.key] = false;
+});
+
+const moveSpeed = 0.1;
+const flySpeed = 0.1;
+
+function updateCameraPosition() {
+    const moveVector = new THREE.Vector3(); // Vector to store movement direction
+
+    if (keyboard['w']) {
+        moveVector.z -= moveSpeed; // Move camera forward
+    }
+    if (keyboard['s']) {
+        moveVector.z += moveSpeed; // Move camera backward
+    }
+    if (keyboard['a']) {
+        moveVector.x -= moveSpeed; // Move camera left
+    }
+    if (keyboard['d']) {
+        moveVector.x += moveSpeed; // Move camera right
+    }
+    if (keyboard[' ']) { // Spacebar
+        camera.position.y += flySpeed; // Move camera upwards
+    }
+
+    // Apply movement vector to the camera's position
+    camera.position.add(moveVector);
+}
+
+// Render Loop
+function animate() {
+    requestAnimationFrame(animate);
+
+    updateCameraPosition();
+    renderer.render(scene, camera);
+}
+
+animate ();
